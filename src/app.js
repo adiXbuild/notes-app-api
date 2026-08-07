@@ -67,9 +67,8 @@ app.delete("/notes/:id", async (req,res)=>{
 app.patch("/notes/:id", async (req,res)=>{
     const id = req.params.id;
     const description = req.body.description;     
-
-    
-
+    await notemodel.findOneAndUpdate({_id: id},{description: description})
+    // in findOneAndUpdate => we have two objects in which we have to select and in other update what is needed to.
     res.status(200).json({
         message : "note updated succesfully"
     })
